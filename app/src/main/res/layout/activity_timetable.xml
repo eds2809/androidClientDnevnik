@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TimetableActivity">
+    <Space
+        android:id="@+id/main_space"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </Space>
+
+
+    <RelativeLayout
+        android:layout_below="@id/main_space"
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/head_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            android:spinnerMode="dialog">
+        </Spinner>
+    </RelativeLayout>
+    <Space
+        android:layout_below="@id/head"
+        android:id="@+id/head_space"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </Space>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/subject_list_SwipeRefreshLayout"
+        android:layout_below="@id/head_space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subject_list_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
