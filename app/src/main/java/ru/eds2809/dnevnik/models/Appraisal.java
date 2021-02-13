@@ -13,4 +13,10 @@ public class Appraisal implements Serializable {
     private Long score;
     private String evaluationDateString;
     private Date updateDate;
+
+    public Appraisal(Long subjectId, Long userId, Long score) {
+        this.subjectId = subjectId;
+        this.userId = userId;
+        this.score = score;
+    }
 }

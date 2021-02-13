@@ -23,6 +23,7 @@ public class SubjectTimeTableAdapter extends RecyclerView.Adapter<SubjectTimeTab
         this.scoreClickListener = scoreClickListener;
     }
 
+
     @NonNull
     @Override
     public SubjectTimeTableVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,7 +36,7 @@ public class SubjectTimeTableAdapter extends RecyclerView.Adapter<SubjectTimeTab
         Appraisal appraisal = appraisalList.get(position);
         holder.scoreView.setText(String.valueOf(appraisal.getScore()));
         holder.date.setText(appraisal.getEvaluationDateString());
-        holder.scoreView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             scoreClickListener.click(appraisal);
         });
     }
@@ -43,6 +44,29 @@ public class SubjectTimeTableAdapter extends RecyclerView.Adapter<SubjectTimeTab
     @Override
     public int getItemCount() {
         return appraisalList.size();
+    }
+
+    public void addOrUpdate(Appraisal appraisal) {
+        if (appraisal != null) {
+            boolean isUpdate = false;
+
+            for (int i = 0; i < appraisalList.size(); i++) {
+                if (appraisalList.get(i).getId().equals(appraisal.getId())) {
+                    notifyItemChanged(i);
+                    isUpdate = true;
+                }
+            }
+
+            if (!isUpdate) {
+                appraisalList.add(appraisal);
+                notifyItemInserted(appraisalList.size());
+            }
+        }
+    }
+
+    public void deleteItem(int position) {
+        appraisalList.remove(position);
+        notifyItemRemoved(position);
     }
 
     public class SubjectTimeTableVH extends RecyclerView.ViewHolder {
@@ -59,9 +83,15 @@ public class SubjectTimeTableAdapter extends RecyclerView.Adapter<SubjectTimeTab
     public void setAppraisalList(List<Appraisal> appraisalList) {
         this.appraisalList = appraisalList;
         notifyDataSetChanged();
+
+    }
+
+    public List<Appraisal> getAppraisalList() {
+        return appraisalList;
     }
 
     public interface OnScoreClickListener {
         void click(Appraisal appraisal);
     }
+
 }

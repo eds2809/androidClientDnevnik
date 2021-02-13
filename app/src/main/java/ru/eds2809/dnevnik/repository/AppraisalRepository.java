@@ -28,4 +28,18 @@ public class AppraisalRepository {
                 .getAppraisalByUserIdAndSubjectId(userId, subjectId)
                 .enqueue(new HttpResponse<>(httpCallBack));
     }
+
+    public void put(Appraisal appraisal, HttpResponse.HttpCallBack<Appraisal> httpCallBack){
+        NetworkService.getInstance()
+                .appraisalApi()
+                .put(appraisal)
+                .enqueue(new HttpResponse<>(httpCallBack));
+    }
+
+    public void delete(long id, HttpResponse.HttpCallBack<String> httpCallBack) {
+        NetworkService.getInstance()
+                .appraisalApi()
+                .delete(id)
+                .enqueue(new HttpResponse<>(httpCallBack));
+    }
 }

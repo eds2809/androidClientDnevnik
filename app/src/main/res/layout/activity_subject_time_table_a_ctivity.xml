@@ -6,17 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".activity.SubjectTimeTableActivity">
 
-    <Space
+    <LinearLayout
         android:id="@+id/main_space"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-    </Space>
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="10"
+            android:textSize="25sp"
+            android:text="Средняя:"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+        </TextView>
+        <TextView
+            android:layout_weight="8"
+            android:id="@+id/avgScore"
+            android:textSize="25sp"
+            android:textAlignment="textStart"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+        </TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addScoreButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+">
+        </androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+    </Space>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_below="@id/main_space"
-        android:id="@+id/subject_list_recyclerView"
+        android:id="@+id/subject_list_recyclerView_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subject_list_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>
